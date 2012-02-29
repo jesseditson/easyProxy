@@ -1,2 +1,4 @@
 node_modules
-.DS_Storetmp
+.DS_Store
+tmp
+config/runtime.json

@@ -26,4 +26,4 @@ if(config.proxy.https && ['key','cert'].every(function(i){ return config.proxy.h
 logger.log(config.proxy);
 
 // **Http Proxy**
-proxy.createServer(config.proxy).listen(80);
+proxy.createServer(config.proxy).listen(config.port);

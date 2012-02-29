@@ -1,0 +1,26 @@
+{
+  "author": "Jesse Ditson <jesse.ditson@gmail.com> (http://www.jesseditson.com)",
+  "name": "easyProxy",
+  "description": "Boilerplate code for setting up node-http-proxy with some frills",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jesseditson/easyProxy",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jesseditson/easyProxy.git"
+  },
+  "main": "proxy.js",
+  "scripts": {
+    "test": "vows --spec"
+  },
+  "engines": {
+    "node": "~0.6.11 || 0.6.11-pre"
+  },
+  "dependencies": {
+    "http-proxy" : "0.8.x",
+    "winston" : "0.5.x",
+    "winston-sns" : "0.0.x",
+    "config" : "0.4.x"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
+}

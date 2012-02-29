@@ -1,7 +1,0 @@
-{"level":"warn","message":"Found an https key, but it appears to be misconfigured. Not using https.","timestamp":"28 Feb 22:47:22"}
-{"level":"warn","message":"Amazon SNS notification on error is turned off. You must provide a key, secret, id, and topic to use this feature.","timestamp":"28 Feb 22:48:25"}
-{"level":"warn","message":"Loggly logging is turned off. To use this feature, provide a loggly subdomain, auth and inputName.","timestamp":"28 Feb 22:48:25"}
-{"level":"warn","message":"Found an https key, but it appears to be misconfigured. Not using https.","timestamp":"28 Feb 22:48:25"}
-{"level":"warn","message":"Amazon SNS notification on error is turned off. You must provide a key, secret, id, and topic to use this feature.","timestamp":"28 Feb 22:51:44"}
-{"level":"warn","message":"Loggly logging is turned off. To use this feature, provide a loggly subdomain, auth and inputName.","timestamp":"28 Feb 22:51:44"}
-{"level":"warn","message":"Found an https key, but it appears to be misconfigured. Not using https.","timestamp":"28 Feb 22:51:44"}

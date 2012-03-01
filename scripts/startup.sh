@@ -1,22 +1,23 @@
 #!/bin/bash
-start(){
-  node app &
-  proc=$!;
-  mkdir -p "${1}"
-  echo $proc > "${1}/proxy.pid"
-  disown
-  exit 0
-}
-
-ENVLINE=`cat config/runtime.json | grep log_folder`
-pattern='\"([^"]+)\"[,\s]*$'
-if [[ $ENVLINE =~ $pattern ]]
+logFolder=`./scripts/getJsonVal.sh log_folder`
+app=`./scripts/getJsonVal.sh main package.json`
+if [[ $logFolder != "fail" ]]
   then
-  start ${BASH_REMATCH[1]}
-elif [[ `cat config/default.json | grep log_folder` =~ $pattern ]]
+  procpid=`cat ${logFolder}/${app}.pid`
+  if [ -z $procpid ] || [ -z `ps -e $procpid | grep node` ]
     then
-    start ${BASH_REMATCH[1]}
-  else
-    echo "log_folder directive not found."
+    echo "starting..."
+    node $app &
+    proc=$!;
+    mkdir -p "${logFolder}"
+    echo $proc > "${logFolder}/${app}.pid"
+    disown
+    exit 0
+  else 
+    echo "Server already running. please shut down first."
+    exit 1
   fi
+else
+  echo "Failed to find log folder. Not shutting down."
+  exit 1
 fi

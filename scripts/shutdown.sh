@@ -1,19 +1,13 @@
 #!/bin/bash
-stop(){
-  proc=`cat $1/proxy.pid`
+logFolder=`./scripts/getJsonVal.sh log_folder`
+app=`./scripts/getJsonVal.sh main package.json`
+if [[ $logFolder != "fail" ]]
+  then
+  echo "shutting down."
+  proc=`cat $logFolder/$app.pid`
   kill $proc
   exit 0
-}
-
-ENVLINE=`cat config/runtime.json | grep log_folder`
-pattern='\"([^"]+)\"[,\s]*$'
-if [[ $ENVLINE =~ $pattern ]]
-  then
-  stop ${BASH_REMATCH[1]}
-elif [[ `cat config/default.json | grep log_folder` =~ $pattern ]]
-    then
-    stop ${BASH_REMATCH[1]}
-  else
-    echo "log_folder directive not found."
-  fi
+else
+  echo "Failed to find log folder. Not shutting down."
+  exit 1
 fi

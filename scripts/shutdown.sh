@@ -1,13 +1,19 @@
 #!/bin/bash
-logFolder=`./scripts/getJsonVal.sh log_folder`
-app=`./scripts/getJsonVal.sh main package.json`
-if [[ $logFolder != "fail" ]]
+logFolder=`./getJsonVal.sh log_folder`
+app=`./getJsonVal.sh main ../package.json`
+if [[ -z $logFolder ]]
   then
-  echo "shutting down."
-  proc=`cat $logFolder/$app.pid`
-  kill $proc
-  exit 0
-else
-  echo "Failed to find log folder. Not shutting down."
   exit 1
+elif [[ -z $app ]]
+  then
+  exit 1
+else
+  echo "shutting down."
+  cd ..
+  proc=`cat $logFolder/$app.pid`
+  if [ -n $proc ]
+    then
+    kill $proc
+  fi
+  exit 0
 fi

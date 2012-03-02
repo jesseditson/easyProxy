@@ -1,12 +1,12 @@
 #!/bin/bash
-if [[ -z $1 ]]
+if [ -z $1 ]
   then
   echo "no key specified."
   exit 1
 fi
-if [[ -z $2 ]]
+if [ -z "${2}" ]
   then
-  jsonFile="config/runtime.json"
+  jsonFile="../config/runtime.json"
 else
   jsonFile=$2
 fi
@@ -16,12 +16,13 @@ if [[ $ENVLINE =~ $pattern ]]
   then
   echo ${BASH_REMATCH[1]}
   exit
-elif [ -n $2 ] && [[ `cat config/default.json | grep $1` =~ $pattern ]]
+elif [ -n $2 ] 
+  then
+  if [[ `cat ../config/default.json | grep $1` =~ $pattern ]]
     then
     echo ${BASH_REMATCH[1]}
     exit
   else
-    echo "fail"
     exit 1
   fi
 fi

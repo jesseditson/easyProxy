@@ -10,7 +10,7 @@ var logger = require('./lib/logger.js');
 
 config.proxies.forEach(function(conf){
   // **Check for https keys**
-  if(conf.proxy && conf.proxy.https.key && conf.proxy.https.cert && ['key','cert'].every(function(i){ return conf.proxy.https[i].length; })){
+  if(conf.proxy.https && conf.proxy.https.key && conf.proxy.https.cert && ['key','cert'].every(function(i){ return conf.proxy.https[i].length; })){
     // if these have values, try to add in the keys
     try {
       conf.proxy.https.key = fs.readFileSync(conf.proxy.https.key);

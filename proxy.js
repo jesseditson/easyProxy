@@ -10,7 +10,7 @@ var logger = require('./lib/logger.js');
 
 config.proxies.forEach(function(conf){
   // **Check for https keys**
-  if(conf.proxy.https && ['key','cert'].every(function(i){ return conf.proxy.https[i].length; })){
+  if(conf.proxy && conf.proxy.https.key && conf.proxy.https.cert && ['key','cert'].every(function(i){ return conf.proxy.https[i].length; })){
     // if these have values, try to add in the keys
     try {
       conf.proxy.https.key = fs.readFileSync(conf.proxy.https.key);
@@ -24,8 +24,9 @@ config.proxies.forEach(function(conf){
     logger.warn('Found an https key, but it appears to be misconfigured. Not using https.');
   }
 
-  logger.log(conf.proxy);
+  logger.silly(conf.proxy);
 
   // **Http Proxy**
+  logger.silly("Starting Proxy on Port " + conf.port);
   proxy.createServer(conf.proxy).listen(conf.port);
 });

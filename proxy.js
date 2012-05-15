@@ -53,6 +53,6 @@ config.proxies.forEach(function(conf){
   logger.silly(conf.proxy);
 
   // **Http Proxy**
-  logger.silly("Starting Proxy on Port " + conf.port);
+  logger.debug("Starting Proxy on Port " + conf.port);
   proxy.createServer(conf.proxy).listen(conf.port);
 });

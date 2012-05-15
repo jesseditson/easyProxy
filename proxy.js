@@ -1,12 +1,13 @@
-// Dependencies
-// ------------
+// Helpers/config
+// --------------
 
+// deep clone a config file
 var cloneConfig = function(o){
   var r = {};
   for(var k in o){
     if(!o.hasOwnProperty(k)) continue;
     var t = typeof o[k];
-    if(t === 'object'){
+    if(t === 'object' && !Array.isArray(o[k])){
       r[k] = cloneConfig(o[k]);
     } else if(t !== 'function'){
       r[k] = o[k];
@@ -22,11 +23,16 @@ if(configPath && path.existsSync(configPath)){
   process.env.NODE_CONFIG_DIR = configPath;
 }
 
+// Dependencies
+// ------------
+
 var proxy = require('http-proxy'),
     config = cloneConfig(require('config')),
     fs = require('fs');
 // Set up logger.
 var logger = require('./lib/logger.js');
+
+logger.debug('loaded proxies',JSON.stringify(config.proxies));
 
 config.proxies.forEach(function(conf){
   // **Check for https keys**

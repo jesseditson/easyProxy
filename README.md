@@ -12,18 +12,23 @@ Here is an example config file, with all the options specified:
 
 ```javascript
 {
-  "port" : 80,
-  "proxy" : { // this will be directly passed in to node-http-proxy. Refer to the documentation [here](https://github.com/nodejitsu/node-http-proxy).
-    "hostnameOnly" : true,
-    "router" : {
-      "localhost" : 8080
-    },
-    "https" : {
-      "key" : "", // these should be paths to files - they will automatically be loaded at runtime
-      "cert" : "" // same as above.
-    },
-    "maxSockets" : "100"
-  },
+  "proxies" : [ // each of these will be directly passed in to node-http-proxy. Refer to the documentation [here](https://github.com/nodejitsu/node-http-proxy).
+    {
+      "port" : 80,
+      "proxy" : {
+        "hostnameOnly" : true,
+        "router" : {
+          "grazzee.com" : "127.0.0.1:8080",
+          "www.grazzee.com" : "127.0.0.1:8080"
+        },
+        "https" : {
+          "key" : "", // these should be paths to files - they will automatically be loaded at runtime
+          "cert" : "" // same as above.
+        },
+        "maxSockets" : "100"
+      }
+    }
+  ],
   "log_folder" : "../tmp/logs",
   "amazon" : { // if configured, these will send errors to amazon SNS
     "key" : "",

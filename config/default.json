@@ -1,16 +1,20 @@
 {
-  "port" : 80,
-  "proxy" : {
-    "hostnameOnly" : true,
-    "router" : {
-      "localhost" : "127.0.0.1:8080"
-    },
-    "https" : {
-      "key" : "",
-      "cert" : ""
-    },
-    "maxSockets" : "100"
-  },
+  "proxies" : [
+    {
+      "port" : 80,
+      "proxy" : {
+        "hostnameOnly" : true,
+        "router" : {
+          "localhost" : "127.0.0.1:8080"
+        },
+        "https" : {
+          "key" : "",
+          "cert" : ""
+        },
+        "maxSockets" : "100"
+      }
+    }
+  ],
   "log_folder" : "tmp/logs",
   "amazon" : {
     "key" : "",

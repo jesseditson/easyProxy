@@ -15,6 +15,13 @@ var cloneConfig = function(o){
   return r;
 }
 
+var path = require('path'),
+    configPath = process.argv[2];
+
+if(configPath && path.existsSync(configPath)){
+  process.env.NODE_CONFIG_DIR = configPath;
+}
+
 var proxy = require('http-proxy'),
     config = cloneConfig(require('config')),
     fs = require('fs');

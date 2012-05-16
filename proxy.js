@@ -3,15 +3,24 @@
 
 // deep clone a config file
 var cloneConfig = function(o){
-  var r = {};
+  var r = {},
+      getValue = function(v){
+        var t = typeof v;
+        if(t === 'object' && !Array.isArray(v)){
+          return cloneConfig(v);
+        } else if(Array.isArray(v)){
+          var a=[];
+          for(var n=0,l=v.length;n<l;n++){
+            a.push(getValue(v))
+          }
+          return a
+        } else if(t !== 'function'){
+          return v
+        }
+      }
   for(var k in o){
     if(!o.hasOwnProperty(k)) continue;
-    var t = typeof o[k];
-    if(t === 'object' && !Array.isArray(o[k])){
-      r[k] = cloneConfig(o[k]);
-    } else if(t !== 'function'){
-      r[k] = o[k];
-    }
+    r[k] = getValue(o[k]);
   }
   return r;
 }

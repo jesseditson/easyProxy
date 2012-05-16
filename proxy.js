@@ -11,7 +11,7 @@ var cloneConfig = function(o){
         } else if(Array.isArray(v)){
           var a=[];
           for(var n=0,l=v.length;n<l;n++){
-            a.push(getValue(v))
+            a.push(getValue(v[n]))
           }
           return a
         } else if(t !== 'function'){
